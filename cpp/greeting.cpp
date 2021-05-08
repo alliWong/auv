@@ -1,6 +1,6 @@
 #include "greeting.h"
 
-namespace gtsam_example {
+namespace gtsam_auv {
 
 /// Print a greeting
 void Greeting::sayHello() const {
@@ -22,4 +22,4 @@ void Greeting::sayGoodbye() const {
   std::cout << "Goodbye, robot" << std::endl;
 }
 
-};  // namespace gtsam_example
+};  // namespace gtsam_auv

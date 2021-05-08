@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace gtsam_example {
+namespace gtsam_auv {
 
 class Greeting {
   std::vector<std::string> names_;
@@ -38,4 +38,4 @@ class Greeting {
   std::string operator[](size_t idx) const { return this->names_[idx]; }
 };
 
-}  // namespace gtsam_example
+}  // namespace gtsam_auv

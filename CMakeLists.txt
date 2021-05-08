@@ -2,10 +2,10 @@
 # wrapping using the CMake tools
 
 # ##############################################################################
-# * 1. To create your own project, replace "gtsam_example" with the actual name
+# * 1. To create your own project, replace "gtsam_auv" with the actual name
 #   of your project
 cmake_minimum_required(VERSION 3.9)
-project(gtsam_example CXX C)
+project(gtsam_auv CXX C)
 set(CXX_STANDARD 11)
 
 # ##############################################################################
@@ -24,7 +24,11 @@ include_directories(BEFORE "${PROJECT_SOURCE_DIR}")
 # ##############################################################################
 # * 4. Build static library from common sources. This is a common cmake step
 #   where we load all the source files and link against the GTSAM library.
-add_library(${PROJECT_NAME} SHARED cpp/greeting.h cpp/greeting.cpp)
+add_library(${PROJECT_NAME} SHARED 
+              cpp/greeting.h 
+              cpp/greeting.cpp
+              cpp/PriorFactorPose3Z.h
+              cpp/PriorFactorVel.h)
 target_link_libraries(${PROJECT_NAME} gtsam)
 
 # ##############################################################################
@@ -71,11 +75,11 @@ configure_file(${PROJECT_SOURCE_DIR}/wrapper/setup.py.in
                ${GTSAM_MODULE_PATH}/setup.py)
 
 # Copy over the __init__.py file. This is now
-# `python/gtsam_example/__init__.py`.
+# `python/gtsam_auv/__init__.py`.
 configure_file(${PROJECT_SOURCE_DIR}/wrapper/__init__.py.in
                ${GTSAM_MODULE_PATH}/${PROJECT_NAME}/__init__.py)
 
-# Copy over the pybind .tpl file. This is now `build/gtsam_example.tpl`.
+# Copy over the pybind .tpl file. This is now `build/gtsam_auv.tpl`.
 configure_file(${PROJECT_SOURCE_DIR}/wrapper/pybind_wrapper.tpl.example
                ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.tpl)
 
@@ -109,11 +113,11 @@ set(ignore "")
 pybind_wrap(
   ${PROJECT_NAME}_py # target
   ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}.i # interface header file
-                                          # (gtsam_example.i in the root
+                                          # (gtsam_auv.i in the root
                                           # directory)
-  "${PROJECT_NAME}.cpp" # the generated cpp (gtsam_example.cpp)
-  "${PROJECT_NAME}" # module_name (gtsam_example)
-  "${PROJECT_NAME}" # top namespace in the cpp file (gtsam_example)
+  "${PROJECT_NAME}.cpp" # the generated cpp (gtsam_auv.cpp)
+  "${PROJECT_NAME}" # module_name (gtsam_auv)
+  "${PROJECT_NAME}" # top namespace in the cpp file (gtsam_auv)
   "${ignore}" # ignore classes
   ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.tpl
   ${PROJECT_NAME} # libs
@@ -123,7 +127,7 @@ pybind_wrap(
 )
 
 # We define where we wish to save the wrapped .so file once we run `make`. It
-# will be stored in `build/gtsam_example/gtsam_example` to conform to standard
+# will be stored in `build/gtsam_auv/gtsam_auv` to conform to standard
 # python module structure.
 set_target_properties(
   ${PROJECT_NAME}_py
