@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        "priorfactorpose3z.h": "c"
+        "priorfactorpose3z.h": "c",
+        "priorfactorvel.h": "c",
+        "*.ipp": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

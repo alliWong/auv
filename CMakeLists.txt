@@ -25,10 +25,10 @@ include_directories(BEFORE "${PROJECT_SOURCE_DIR}")
 # * 4. Build static library from common sources. This is a common cmake step
 #   where we load all the source files and link against the GTSAM library.
 add_library(${PROJECT_NAME} SHARED 
-              cpp/greeting.h 
-              cpp/greeting.cpp
-              cpp/PriorFactorPose3Z.h
-              cpp/PriorFactorVel.h)
+            cpp/PriorFactorPose3Z.h
+            cpp/PriorFactorPose3Z.cpp
+            cpp/PriorFactorVel.h
+            cpp/PriorFactorVel.cpp)
 target_link_libraries(${PROJECT_NAME} gtsam)
 
 # ##############################################################################
