@@ -36,13 +36,13 @@ class Greeting {
 virtual class PriorFactorPose3Z : gtsam::NoiseModelFactor {
   PriorFactorPose3Z(size_t key, const double& measZ, const gtsam::noiseModel::Base* noiseModel);
   Vector evaluateError(const gtsam::Pose3& p) const;
-  };
+};
 
 #include <cpp/PriorFactorVel.h>
 virtual class PriorFactorVel : gtsam::NoiseModelFactor {
   PriorFactorVel(size_t key1, size_t key2, const Vector& b_velocity_, const gtsam::noiseModel::Base* noiseModel);
   Vector evaluateError(const gtsam::Pose3& p, const Vector& v) const;
-  };
+};
 
 
 }  // namespace gtsam_auv
